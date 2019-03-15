@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@drawable/grad_bg">
+    <TextView
+        android:id="@+id/textViewLogin1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Know your target"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/textViewLogin2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewLogin1"
+        android:text="@string/text_1"
+        android:textColor="#FFF"
+        android:gravity="center"
+        android:textSize="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/cancer_icon"
+            app:civ_border_color="#FF000000"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:layout_alignParentBottom="true"
+        android:divider="@drawable/separator"
+        android:orientation="horizontal"
+        android:background="#6698FF"
+        android:showDividers="middle">
+
+        <Button
+            android:id="@+id/butt_login"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SIGN IN"
+            android:textColor="#FFFFFF"/>
+
+        <Button
+            android:id="@+id/butt_login2"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SIGN UP"
+            android:textColor="#FFFFFF"/>
+
+
+    </LinearLayout>
+</RelativeLayout>

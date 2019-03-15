@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">CancerHub</string>
+    <string name="text_1">"Automatic recording of your life in the day,\n\accurate display on the map"</string>
+    <string name="welcome">How can we help you today?</string>
+    <string name="welcome1">Welcome Joy,</string>
+    <string name="med_news">Roche received a FDA CLIA waiver for its rapid -of -care test to detect and differentiate influenza A virus and influenza B virus,using its cobas Liat PCR System. </string>
+    <string name="lbl_forgot_password">Forgot password?</string>
+    <string name="forgot_password_msg">We just need your registered Email id to send you the reset password instructions</string>
+    <string name="btn_reset_password">RESET PASSWORD</string>
+    <string name="btn_back"><![CDATA[<<Back]]></string>
+    <string name="hint_email">Email</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string-array name="cancer_properties">
+        <item>Overview</item>
+        <item>Medical Illustrations</item>
+        <item>Risk Factors</item>
+        <item>Symptoms and Sign</item>
+        <item>Diagnosis</item>
+        <item>Stages and Grades</item>
+        <item>Treatment &amp; Management</item>
+        <item>Latest Research</item>
+    </string-array>
+    <string name="title_activity_profile">Cancer Hub</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Roney Camille</string>
+    <string name="nav_header_subtitle">roneycamille96@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="what_symptoms_are_you_experiencing">What symptoms are you experiencing?</string>
+    <string name="x_30"><![CDATA[x<30]]></string>
+    <string name="_30_x_50"><![CDATA[30<x<50]]></string>
+    <string name="_50_x_75"><![CDATA[50<x<75]]></string>
+
+    <string-array name="occupational_Hazards">
+        <item>--Select Hazard--</item>
+        <item>Radiation exposure</item>
+        <item>Sunlight exposure</item>
+        <item>Chemical Exposure</item>
+        <item>Thermal Exposure</item>
+    </string-array>
+
+    <string-array name="habits">
+        <item>--Select Habit--</item>
+        <item>Fast food addiction</item>
+        <item>Smoking</item>
+        <item>Alcohol</item>
+        <item>Chewing</item>
+        <item>Hot beverage</item>
+    </string-array>
+
+
+
+</resources>

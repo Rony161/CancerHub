@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+tools:context=".activities.Docs_profile">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarDocsP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/textViewProfile"
+            android:layout_below="@+id/toolbarDocsP"
+            android:padding="20dp"
+            android:text="Edit Profile"
+            android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="120dp"
+            android:background="@drawable/grad_bg"
+            android:layout_height="120dp"
+            android:paddingBottom="20dp"
+            android:layout_below="@+id/textViewProfile"
+            android:id="@+id/image_Docs"/>
+
+        <EditText
+            android:layout_below="@id/image_Docs"
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Doctors' name" />
+
+        <EditText
+            android:layout_below="@id/editTextName"
+            android:id="@+id/editTextDescrip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Doctors description" />
+
+        <EditText
+            android:layout_below="@id/editTextDescrip"
+            android:id="@+id/editTextLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Doctors Location" />
+
+        <Button
+            android:id="@+id/AddDocsProfile"
+            android:layout_below="@+id/editTextLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Doc" />
+
+
+    </LinearLayout>/
+
+</LinearLayout>

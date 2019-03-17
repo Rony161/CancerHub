@@ -1,4 +1,4 @@
-package com.example.joy.cancerhub.models;
+package com.example.joy.cancerhub.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.joy.cancerhub.R;
-import com.example.joy.cancerhub.activities.cancer_types;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +23,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class LungCancer extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     DatabaseReference DBRef;
-
     FirebaseFirestore db;
 
     private Spinner spinner;
@@ -37,7 +35,7 @@ public class LungCancer extends AppCompatActivity implements AdapterView.OnItemS
         setContentView(R.layout.activity_lung_cancer);
 
         Toolbar toolbar = findViewById(R.id.toolbarLungCancer);
-        toolbar.setTitle("Lung Cancer");
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

@@ -11,6 +11,8 @@
     <color name="transparent">#00000000</color>
     <color name="gradStart">#23A7D8</color>
     <color name="gradStop">#306eff</color>
+    <color name="signupColor">#066e8a</color>
+
 
 
 </resources>

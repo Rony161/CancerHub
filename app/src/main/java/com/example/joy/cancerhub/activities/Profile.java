@@ -77,8 +77,10 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
         cardView6.setOnClickListener(this);
 
         textWelcomeMessage = findViewById(R.id.textWelcomeMessage);
-        emailprofile = findViewById(R.id.emailprofile);
-        profilefull = findViewById(R.id.profilefull);
+
+        View navigationHeaderLayout = navigationView.getHeaderView(0);
+        emailprofile = navigationHeaderLayout.findViewById(R.id.emailprofile);
+        profilefull = navigationHeaderLayout.findViewById(R.id.profilefull);
 
     }
 
@@ -92,6 +94,8 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 textWelcomeMessage.setText("Welcome\t" + user.getUsername() + ",");
+                profilefull.setText(user.getFullname());
+                emailprofile.setText(user.getEmail());
             }
 
             @Override
@@ -178,7 +182,7 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
         }
         if (view == cardView4) {
             //finish();
-            startActivity(new Intent(this, Docs_profile.class));
+            startActivity(new Intent(this, HealthRecords.class));
         }
         if (view == cardView5) {
             //finish();

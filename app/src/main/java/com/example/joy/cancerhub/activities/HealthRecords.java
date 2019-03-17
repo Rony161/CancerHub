@@ -10,40 +10,45 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.joy.cancerhub.R;
-import com.example.joy.cancerhub.adapters.F_DoctorAdapter;
-import com.example.joy.cancerhub.models.Doctor;
+import com.example.joy.cancerhub.adapters.RecordsAdapter;
+import com.example.joy.cancerhub.models.Prognosis;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FindDoctor extends AppCompatActivity {
+public class HealthRecords extends AppCompatActivity {
 
+    FirebaseUser fuser;
     FirebaseFirestore dbFirestore;
 
-    private List<Doctor> docs_List = new ArrayList<>();
-    private RecyclerView recyclerD;
-    private F_DoctorAdapter dAdapter;
-    Button appoinment;
+    TextView dateOfRecord, txtRiskRecord, txtCancerRecord, txtRecommendRecord, txtRecommendRecord2;
+
+
+    private List<Prognosis> addRecord;
+    private RecyclerView recyclerR;
+    private RecordsAdapter rAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_doctor);
+        setContentView(R.layout.activity_health_records);
 
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
         dbFirestore = FirebaseFirestore.getInstance();
 
-
-        Toolbar toolbar = findViewById(R.id.toolbarFindDoc);
-        toolbar.setTitle("Find a Doctor");
+        Toolbar toolbar = findViewById(R.id.toolbarH_Records);
+        toolbar.setTitle("Risk Assessment Records");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -58,53 +63,52 @@ public class FindDoctor extends AppCompatActivity {
         });
 
 
-        recyclerD = findViewById(R.id.recyclerViewD);
-        appoinment = findViewById(R.id.appointment_btn);
-        recyclerD.setLayoutManager(new LinearLayoutManager(this));
-        recyclerD.setItemAnimator(new DefaultItemAnimator());
+        dateOfRecord = findViewById(R.id.dateOfRecord);
+        txtRiskRecord = findViewById(R.id.txtRiskRecord);
+        txtCancerRecord = findViewById(R.id.txtCancerRecord);
+        txtRecommendRecord = findViewById(R.id.txtRecommendRecord);
+        txtRecommendRecord2 = findViewById(R.id.txtRecommendRecord2);
 
-        docs_List = new ArrayList<>();
-        dAdapter = new F_DoctorAdapter(getApplicationContext(),docs_List);
-        recyclerD.setAdapter(dAdapter);
+        recyclerR = findViewById(R.id.recyclerViewR);
+        recyclerR.setLayoutManager(new LinearLayoutManager(HealthRecords.this));
+        recyclerR.setItemAnimator(new DefaultItemAnimator());
+        addRecord = new ArrayList<>();
+        rAdapter = new RecordsAdapter(getApplicationContext(), addRecord);
+        recyclerR.setAdapter(rAdapter);
 
+        viewHealthRecords();
 
-        prepareDocsData();
-
-        //appoinment.setOnClickListener(new View.OnClickListener() {
-        //  @Override
-        //  public void onClick(View view) {
-
-        //      startActivity(new Intent(getApplicationContext(),Docs_profile.class));
-        //      finish();}
-        //});
 
     }
 
-    private void prepareDocsData() {
+    private void viewHealthRecords() {
 
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Loading");
-        progressDialog.setMessage("Please wait...");
+        progressDialog.setMessage("Loading diseases");
         progressDialog.setCancelable(false);
         progressDialog.setIndeterminate(true);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
 
-        dbFirestore.collection("Doctors")
+        dbFirestore.collection("user_prognosis")
+                .whereEqualTo("user", fuser.getUid())
+                .orderBy("timestamp", Query.Direction.ASCENDING)
                 .get()
-                .addOnCompleteListener(FindDoctor.this, new OnCompleteListener<QuerySnapshot>() {
+                .addOnCompleteListener(HealthRecords.this, new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         progressDialog.dismiss();
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
-                                docs_List.add(document.toObject(Doctor.class));
+
+
+                                //addRecord.add(document.toObject(Prognosis.class));
+                                Prognosis record = document.toObject(Prognosis.class);
+
+                                addRecord.add(record);
+                                rAdapter.notifyDataSetChanged();
                             }
-                            dAdapter.notifyDataSetChanged();
-                        }
-                        else{
-                            Toast.makeText(FindDoctor.this, "Error connecting to Internet", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

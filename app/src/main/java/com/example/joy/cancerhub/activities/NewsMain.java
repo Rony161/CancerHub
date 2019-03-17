@@ -38,7 +38,6 @@ public class NewsMain extends AppCompatActivity {
 
         dbFirestore = FirebaseFirestore.getInstance();
 
-
         Toolbar toolbar = findViewById(R.id.toolbarNews);
         toolbar.setTitle("News");
         setSupportActionBar(toolbar);
@@ -61,10 +60,10 @@ public class NewsMain extends AppCompatActivity {
         nAdapter = new NewsAdapter(news_List);
         recyclerV.setAdapter(nAdapter);
 
-        OutputNewsData();
+        outputNewsData();
     }
 
-    private void OutputNewsData() {
+    private void outputNewsData() {
 
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(this);
@@ -88,8 +87,6 @@ public class NewsMain extends AppCompatActivity {
                         }
                     }
                 });
-
-       // nAdapter.notifyDataSetChanged();
-    }
+        }
 }
 

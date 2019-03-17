@@ -36,24 +36,18 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.ResetPassword" />
         <activity android:name=".activities.Docs_profile" />
         <activity android:name=".activities.cancer_types" />
-        <activity android:name=".models.LungCancer" />
+        <activity android:name=".activities.LungCancer" />
         <activity
             android:name=".activities.Profile"
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme" />
         <activity android:name=".activities.Information" />
         <activity android:name=".models.LiverC" />
-        <activity android:name=".activities.HealthTest" />
+        <activity android:name=".activities.HealthRecords" />
     </application>
 
 </manifest>

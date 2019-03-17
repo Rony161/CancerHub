@@ -19,8 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Basic_Info extends AppCompatActivity {
 
-    String userID;
-    int riskscore;
     RadioButton radioAge1, radioAge2, radioAge3;
     RadioButton radioArea1, radioArea2;
     RadioButton radioAnaemic1, radioAnaemic2;
@@ -195,10 +193,6 @@ public class Basic_Info extends AppCompatActivity {
                 }
             }
         });
-
-        fDbs = FirebaseDatabase.getInstance();
-        dRef = FirebaseDatabase.getInstance().getReference("user_prognosis")
-                .child(fuser.getUid());
         btP = findViewById(R.id.btnPersonal);
         btP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,8 +207,6 @@ public class Basic_Info extends AppCompatActivity {
                 spinHazards.setSelection(0);
                 spinHabits.setSelection(0);
                 riskScore = 0;
-
-
             }
         });
     }
@@ -225,32 +217,23 @@ public class Basic_Info extends AppCompatActivity {
 
             riskScore = (float) ((AgeScore + AreaScore + HabitsSore + HazardsScore + AnaemiaScore + GenderScore + FHBGScore + HBGScore) * 2.6773);
 
-//            Prognosis prognosis = new Prognosis(riskscore);
-//            prognosis.setRiskscore(riskScore);
-//            dRef.setValue(prognosis);
-//
-            //Toast.makeText(this, "successful Toast.LENGTH_SHORT).show();
-//
             if (riskScore < 30.0) {
                  text = "Low level";
                 advice = "Eat more fruits , do some body workouts to keep fit and asses your health status more often";
-               // Toast.makeText(this, "Your cancer Risk possibility is of" + text + "\nAdvice:\n" + advice, Toast.LENGTH_SHORT).show();
             } else if (riskScore >= 40.0 && riskScore <= 65.0) {
                  text = "Intermediate level";
                  advice = "We would strongly advice you to watch your eating habits, keep fit, seek medical advice from other doctor, read more on cancer";
-               // Toast.makeText(this, "Your cancer Risk possibility is of" + text + "\nAdvice:\n" + advice, Toast.LENGTH_SHORT).show();
             } else {
                  text = "High level";
                 advice = "This is a critical level, you should see a doctor for scanning or more cancer tests for early treatment  ";
-                //Toast.makeText(this, "Your cancer Risk possibility is of" + text + "\nAdvice:\n" + advice, Toast.LENGTH_SHORT).show();
             }
 
-            /*******************PASS DATA TO A DIFFERENT ACTIVITY******************************************************/
+            /*******************PASS DATA TO A MYHEALTH ACTIVITY******************************************************/
             Intent intent = new Intent(this, MyHealth.class);
             Bundle bundle = new Bundle();
-            bundle.putFloat("Riskscore", riskScore);
-            bundle.putString("Prognosis", text);
-            bundle.putString("Advice", advice);
+            bundle.putFloat("riskScore", riskScore);
+            bundle.putString("prognosis", text);
+            bundle.putString("advice", advice);
             intent.putExtra("RiskScore", bundle);
             startActivity(intent);
 

@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.joy.cancerhub.R;
-import com.example.joy.cancerhub.models.LungCancer;
 
 public class Information extends AppCompatActivity implements View.OnClickListener {
 

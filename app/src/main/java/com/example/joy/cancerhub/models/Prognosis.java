@@ -1,21 +1,34 @@
 package com.example.joy.cancerhub.models;
 
+import com.google.firebase.Timestamp;
+
 public class Prognosis {
 
-    public String cancerDisease;
-    public float riskscore ;
-    public String riskLevel;
-    public String advice;
+    private String cancerDisease;
+    private float riskScore ;
+    private String riskLevel;
+    private String recommendation;
+    private Timestamp timestamp;
+
 
     public Prognosis() {
     }
 
-    public Prognosis(String cancerDisease, float riskscore, String riskLevel, String advice) {
+    public Prognosis(String cancerDisease,float riskScore, String riskLevel, String recommendation, Timestamp timestamp) {
         this.cancerDisease = cancerDisease;
-        this.riskscore = riskscore;
         this.riskLevel = riskLevel;
-        this.advice = advice;
+        this.riskScore = riskScore;
+        this.recommendation = recommendation;
+        this.timestamp = timestamp;
     }
+
+    public Prognosis(String cancerDisease, float riskScore, String riskLevel, String recommendation) {
+        this.cancerDisease = cancerDisease;
+        this.riskScore = riskScore;
+        this.riskLevel = riskLevel;
+        this.recommendation = recommendation;
+    }
+
     public String getCancerDisease() {
         return cancerDisease;
     }
@@ -24,12 +37,12 @@ public class Prognosis {
         this.cancerDisease = cancerDisease;
     }
 
-    public double getRiskscore() {
-        return riskscore;
+    public float getRiskScore() {
+        return riskScore;
     }
 
-    public void setRiskscore(float riskscore) {
-        this.riskscore = riskscore;
+    public void setRiskScore(float riskScore) {
+        this.riskScore = riskScore;
     }
 
     public String getRiskLevel() {
@@ -40,11 +53,19 @@ public class Prognosis {
         this.riskLevel = riskLevel;
     }
 
-    public String getAdvice() {
-        return advice;
+    public String getRecommendation() {
+        return recommendation;
     }
 
-    public void setAdvice(String advice) {
-        this.advice = advice;
+    public void setRecommendation(String recommendation) {
+        this.recommendation = recommendation;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 }

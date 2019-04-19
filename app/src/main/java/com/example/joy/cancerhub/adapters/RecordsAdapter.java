@@ -12,6 +12,7 @@ import com.example.joy.cancerhub.R;
 import com.example.joy.cancerhub.models.Prognosis;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -34,7 +35,6 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.ViewHold
             txtRiskRecord = itemView.findViewById(R.id.txtRiskRecord);
             txtCancerRecord = itemView.findViewById(R.id.txtCancerRecord);
             txtRecommendRecord = itemView.findViewById(R.id.txtRecommendRecord);
-
             txtRecommendRecord2 = itemView.findViewById(R.id.txtRecommendRecord2);
         }
     }
@@ -53,7 +53,8 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.ViewHold
 
         Prognosis record = records.get(position);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/YYYY HH:mm", Locale.getDefault());
-        String date = simpleDateFormat.format(record.getTimestamp().toDate());
+        Date recordDate = record.getTimestamp() == null ? new Date() : record.getTimestamp().toDate();
+        String date = simpleDateFormat.format(recordDate);
         holder.dateOfRecord.setText(date);
         holder.txtCancerRecord.setText(record.getCancerDisease());
         holder.txtRiskRecord.setText(record.getRiskLevel());

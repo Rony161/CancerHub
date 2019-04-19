@@ -37,10 +37,10 @@
             android:layout_below="@+id/toolbarFindDoc"
             android:layout_margin="16dp">
             <EditText
+                android:id="@+id/editSearchDoc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg"
-
                 android:drawableRight="@android:drawable/ic_menu_search"
                 android:drawablePadding="22dp"
                 android:gravity="left|center"

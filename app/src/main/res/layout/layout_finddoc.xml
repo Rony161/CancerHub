@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical">
@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:layout_margin="5dp"
         app:cardCornerRadius="4dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -24,47 +25,43 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="Specialists' name"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000" />
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
             <ImageView
                 android:id="@+id/imageViewDoc"
-                android:layout_below="@id/ratingBar"
                 android:layout_width="130dp"
-                android:scaleType="fitXY"
+                android:layout_height="160dp"
+                android:layout_below="@id/textViewCharges"
                 android:layout_marginRight="30dp"
-                android:layout_height="100dp"
-                android:padding="4dp" />
-            <Button
-                android:id="@+id/appointment_btn"
+                android:layout_marginBottom="10dp"
+                android:padding="4dp"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/textViewCharges"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Make Appointment"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_below="@id/imageViewDoc"/>
-            <RatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
-                android:stepSize="1"
                 android:layout_height="32dp"
-                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/imageViewDoc"
-                android:scaleX=".5"
-                android:scaleY=".5"
-                android:rating="5"
-                android:transformPivotX="0dp"
-                android:transformPivotY="0dp"
-                android:max="5"/>
+                android:text=" Kshs. 500"
+                android:textStyle="bold"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="#000000" />
+
+
             <TextView
                 android:id="@+id/textViewSpeciality"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/textViewCharges"
                 android:layout_marginLeft="5dp"
-                android:layout_below="@id/ratingBar"
                 android:layout_toRightOf="@id/imageViewDoc"
                 android:text="DEPARTMENT/SPECIALITY"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="#000000" />
+
             <TextView
                 android:id="@+id/textViewDesc"
                 android:layout_width="wrap_content"
@@ -75,17 +72,19 @@
                 android:layout_toRightOf="@id/imageViewDoc"
                 android:text="Orthopaedic Surgery"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
             <TextView
                 android:id="@+id/textViewLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/textViewDesc"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_below="@id/textViewDesc"
                 android:layout_toRightOf="@id/imageViewDoc"
                 android:text="LOCATION"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="#000000" />
+
             <TextView
                 android:id="@+id/textViewPlace"
                 android:layout_width="wrap_content"
@@ -96,6 +95,17 @@
                 android:layout_toRightOf="@id/imageViewDoc"
                 android:text="Avon Lake Family Health Center"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+            <Button
+                android:id="@+id/appointment_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewPlace"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toRightOf="@id/imageViewDoc"
+                android:text="Make Appointment" />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>

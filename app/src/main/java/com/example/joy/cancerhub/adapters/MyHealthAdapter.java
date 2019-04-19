@@ -20,23 +20,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyHealthAdapter extends RecyclerView.Adapter<MyHealthAdapter.MyViewHolder> implements Filterable {
-
-    private Context context;
     private List<Symptoms> symptomlist;
     private List<Symptoms> symptomlistFull;
-
+    private Context context;
 
     public MyHealthAdapter(Context context, List<Symptoms> symptomlist) {
-        this.context = context;
         this.symptomlist = symptomlist;
         this.symptomlistFull = symptomlist;
+        this.context = context;
+
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView textView1;
         private CheckBox checkBox1;
 
-        public MyViewHolder(View itemView) {
+         MyViewHolder(View itemView) {
             super(itemView);
             textView1 = itemView.findViewById(R.id.row_item);
             checkBox1 = itemView.findViewById(R.id.check_item);

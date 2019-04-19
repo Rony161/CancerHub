@@ -56,7 +56,7 @@ public class HealthRecords extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Profile.class));
+                startActivity(new Intent(getApplicationContext(), Home.class));
                 finish();
 
             }
@@ -85,7 +85,7 @@ public class HealthRecords extends AppCompatActivity {
 
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading diseases");
+        progressDialog.setMessage("Loading Health Records...");
         progressDialog.setCancelable(false);
         progressDialog.setIndeterminate(true);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -101,11 +101,8 @@ public class HealthRecords extends AppCompatActivity {
                         progressDialog.dismiss();
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
-
-
                                 //addRecord.add(document.toObject(Prognosis.class));
                                 Prognosis record = document.toObject(Prognosis.class);
-
                                 addRecord.add(record);
                                 rAdapter.notifyDataSetChanged();
                             }

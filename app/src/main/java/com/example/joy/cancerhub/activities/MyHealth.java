@@ -79,7 +79,7 @@ public class MyHealth extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Profile.class));
+                startActivity(new Intent(getApplicationContext(), Home.class));
                 finish();
 
             }
@@ -116,7 +116,6 @@ public class MyHealth extends AppCompatActivity {
                         }
                     }
                 }
-
                 if (possibleDiseases.size() > 0) {
                     Disease d = possibleDiseases.get(0);
                     for (Disease disease : possibleDiseases) {
@@ -180,7 +179,7 @@ public class MyHealth extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                     finish();
-                                    startActivity(new Intent(getApplicationContext(),Profile.class));
+                                    startActivity(new Intent(getApplicationContext(),Home.class));
                                 }
                             });
                         }

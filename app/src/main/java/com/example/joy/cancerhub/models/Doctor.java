@@ -6,9 +6,21 @@ public class Doctor {
     private String description;
     private String exactPlace;
     private String picture;
+    private String emailaddress;
+
     public Doctor(){}
 
 
+    public Doctor(String emailaddress) {
+        this.emailaddress = emailaddress;
+    }
+    public String getEmailaddress() {
+        return emailaddress;
+    }
+
+    public void setEmailaddress(String emailaddress) {
+        this.emailaddress = emailaddress;
+    }
 
     public Doctor(String name, String description, String exactPlace, String picture) {
         this.name = name;

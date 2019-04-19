@@ -1,7 +1,9 @@
 package com.example.joy.cancerhub.activities;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -12,11 +14,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.joy.cancerhub.R;
 import com.example.joy.cancerhub.models.User;
@@ -28,7 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     FirebaseAuth mAuth;
     DatabaseReference dbRef;
@@ -42,7 +46,7 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_nav_profile);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -81,6 +85,8 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
         View navigationHeaderLayout = navigationView.getHeaderView(0);
         emailprofile = navigationHeaderLayout.findViewById(R.id.emailprofile);
         profilefull = navigationHeaderLayout.findViewById(R.id.profilefull);
+        dbRef = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
+
 
     }
 
@@ -88,7 +94,6 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
     protected void onStart() {
 
         super.onStart();
-        dbRef = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -126,32 +131,46 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("IntentReset")
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_Health) {
-            startActivity(new Intent(this, MyHealth.class));
-
-        } else if (id == R.id.nav_Infor) {
             startActivity(new Intent(this, Basic_Info.class));
+        } else if (id == R.id.nav_Appointment) {
+            startActivity(new Intent(this, FindDoctor.class));
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_share) {
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setData(Uri.parse("mailto:"));
+            emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"joyluseno2@gmail.com"});
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback CancerHub");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "");
+            emailIntent.setType("plain/text");
+            try {
+                startActivity(Intent.createChooser(emailIntent, "Send mail using..."));
+                Log.i("TAG", "We appreciate your Feedback");
+            } catch (android.content.ActivityNotFoundException ex) {
+                Toast.makeText(Home.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+            }
+        } else if (id == R.id.nav_help) {
 
-        } else if (id == R.id.nav_send) {
+            startActivity(new Intent(this, Help.class));
+
+        } else if (id == R.id.nav_about) {
+
+            startActivity(new Intent(this, About.class));
+
+        } else if (id == R.id.nav_contact) {
+
+            startActivity(new Intent(this, Contact.class));
 
         } else if (id == R.id.nav_logout) {
-
             progressDialog.setMessage("Logging out...");
             progressDialog.show();
             Runnable progressRunnable = new Runnable() {
@@ -159,6 +178,7 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
                 public void run() {
                     progressDialog.dismiss();
                     mAuth.signOut();
+                    finish();
                     startActivity(new Intent(getApplicationContext(), SignIn.class));
                 }
             };
@@ -176,6 +196,9 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
         if (view == cardView1) {
             startActivity(new Intent(this, Basic_Info.class));
         }
+        if (view == cardView2) {
+            startActivity(new Intent(this, Help.class));
+        }
         if (view == cardView3) {
             //finish();
             startActivity(new Intent(this, FindDoctor.class));
@@ -192,6 +215,5 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
             //finish();
             startActivity(new Intent(this, Information.class));
         }
-
     }
 }

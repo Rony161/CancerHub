@@ -47,7 +47,6 @@ public class Basic_Info extends AppCompatActivity {
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
 
-
         radioAge1 = findViewById(R.id.radio_Age1);
         radioAge2 = findViewById(R.id.radio_Age2);
         radioAge3 = findViewById(R.id.radio_Age3);
@@ -212,23 +211,21 @@ public class Basic_Info extends AppCompatActivity {
     }
 
     private void getScore() {
-
         if (radioGroup1.getCheckedRadioButtonId() != -1 && radioGroup2.getCheckedRadioButtonId() != -1 && radioGroup3.getCheckedRadioButtonId() != -1 && radioGroup4.getCheckedRadioButtonId() != -1 && radioGroup5.getCheckedRadioButtonId() != -1 && radioGroup6.getCheckedRadioButtonId() != -1) {
 
             riskScore = (float) ((AgeScore + AreaScore + HabitsSore + HazardsScore + AnaemiaScore + GenderScore + FHBGScore + HBGScore) * 2.6773);
 
             if (riskScore < 30.0) {
-                 text = "Low level";
+                text = "Low level";
                 advice = "Eat more fruits , do some body workouts to keep fit and asses your health status more often";
-            } else if (riskScore >= 40.0 && riskScore <= 65.0) {
-                 text = "Intermediate level";
-                 advice = "We would strongly advice you to watch your eating habits, keep fit, seek medical advice from other doctor, read more on cancer";
+            } else if (riskScore >= 30.0 && riskScore <= 65.0) {
+                text = "Intermediate level";
+                advice = "We would strongly advice you to watch your eating habits, keep fit, seek medical advice from other doctor, read more on cancer";
             } else {
-                 text = "High level";
+                text = "High level";
                 advice = "This is a critical level, you should see a doctor for scanning or more cancer tests for early treatment  ";
             }
 
-            /*******************PASS DATA TO A MYHEALTH ACTIVITY******************************************************/
             Intent intent = new Intent(this, MyHealth.class);
             Bundle bundle = new Bundle();
             bundle.putFloat("riskScore", riskScore);

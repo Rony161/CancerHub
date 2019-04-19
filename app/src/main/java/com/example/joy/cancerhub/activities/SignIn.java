@@ -23,7 +23,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
     private EditText edit_email,edit_password;
     private Button buttonSignIn;
-    private TextView textViewSignup;
+    private TextView textViewSignup,textViewResetPassword;
     private ProgressDialog progressDialog;
 
     private FirebaseAuth firebaseAuth;
@@ -35,19 +35,21 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if(firebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), Profile.class));
-            finish();
-        }
+//        if(firebaseAuth.getCurrentUser() != null){
+//            startActivity(new Intent(getApplicationContext(), Home.class));
+//            finish();
+//        }
         edit_email = findViewById(R.id.input_email);
         edit_password =findViewById(R.id.input_password);
         buttonSignIn = findViewById(R.id.btn_login);
         textViewSignup= findViewById(R.id.link_signup);
+        textViewResetPassword = findViewById(R.id.resetPasword);
 
         progressDialog = new ProgressDialog(this);
 
         buttonSignIn.setOnClickListener(this);
         textViewSignup.setOnClickListener(this);
+        textViewResetPassword.setOnClickListener(this);
     }
 
     private void userLogin(){
@@ -61,25 +63,21 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             Toast.makeText(this,"Please enter password",Toast.LENGTH_LONG).show();
             return;
         }
-        //if the email and password are not empty
-        //displaying a progress dialog
         progressDialog.setMessage("Loading Please Wait...");
         progressDialog.show();
 
-        //authenticate user
         firebaseAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
-                        //if the task is successfull
                         if(task.isSuccessful()){
                             finish();
-                            startActivity(new Intent(getApplicationContext(), Profile.class));
+                            startActivity(new Intent(getApplicationContext(), Home.class));
                         }else{
-                            Toast.makeText(SignIn.this,"Authentication Error",Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignIn.this,"Authentication Error",
+                                    Toast.LENGTH_LONG).show();
                         }
-
                     }
                 });
     }
@@ -88,10 +86,12 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         if(view == buttonSignIn){
             userLogin();
         }
-
         if(view == textViewSignup){
             finish();
             startActivity(new Intent(this, SignUp.class));
+        }
+        if (view ==textViewResetPassword){
+            startActivity(new Intent(this, ResetPassword.class));
         }
     }
 }

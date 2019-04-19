@@ -10,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.joy.cancerhub.R;
 import com.example.joy.cancerhub.adapters.CancerTAdapter;
@@ -27,18 +26,17 @@ import java.util.List;
 
 public class cancer_types extends AppCompatActivity {
 
-    FirebaseFirestore dbFirestore;
+    FirebaseFirestore dbfirestore;
     private List<CancerType> cancer_List = new ArrayList<>();
     private RecyclerView recyclerC;
     private CancerTAdapter cAdapter;
-    TextView textVCancerType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cancer_types);
 
-        dbFirestore = FirebaseFirestore.getInstance();
+        dbfirestore = FirebaseFirestore.getInstance();
 
         Toolbar toolbar = findViewById(R.id.toolbarCancerT);
         toolbar.setTitle("Types of Cancer");
@@ -48,7 +46,7 @@ public class cancer_types extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Information.class));
+                startActivity(new Intent(getApplicationContext(), Information.class));
                 finish();
             }
         });
@@ -57,7 +55,8 @@ public class cancer_types extends AppCompatActivity {
         recyclerC.setLayoutManager(new LinearLayoutManager(this));
         recyclerC.setItemAnimator(new DefaultItemAnimator());
 
-        cAdapter = new CancerTAdapter(cancer_List);
+
+        cAdapter = new CancerTAdapter(cancer_types.this, cancer_List);
         recyclerC.setAdapter(cAdapter);
         OutputCancerTypeList();
     }
@@ -66,13 +65,13 @@ public class cancer_types extends AppCompatActivity {
 
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading symptoms");
+        progressDialog.setMessage("Loading Cancer types...");
         progressDialog.setCancelable(false);
         progressDialog.setIndeterminate(true);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
 
-        dbFirestore.collection("diseases").orderBy("name", Query.Direction.ASCENDING)
+        dbfirestore.collection("diseases").orderBy("name", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -80,7 +79,9 @@ public class cancer_types extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             progressDialog.dismiss();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                cancer_List.add(document.toObject(CancerType.class));
+                                CancerType cancerType = document.toObject(CancerType.class);
+                                cancerType.setId(document.getId());
+                                cancer_List.add(cancerType);
                             }
                             cAdapter.notifyDataSetChanged();
                         }
@@ -88,5 +89,4 @@ public class cancer_types extends AppCompatActivity {
                 });
 
     }
-
 }

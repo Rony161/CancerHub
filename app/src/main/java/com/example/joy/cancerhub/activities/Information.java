@@ -11,7 +11,7 @@ import com.example.joy.cancerhub.R;
 
 public class Information extends AppCompatActivity implements View.OnClickListener {
 
-    TextView textViewTOC, textCope, textViewNav, textViewAU, textViewCU;
+    TextView textViewTOC, textCope, textViewNav, textViewAbout, textViewContact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,22 +26,46 @@ public class Information extends AppCompatActivity implements View.OnClickListen
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Profile.class));
+                startActivity(new Intent(getApplicationContext(),Home.class));
                 finish();
             }
         });
 
 
         textViewTOC = findViewById(R.id.textViewTOC);
+        textViewAbout = findViewById(R.id.textViewAbout);
+        textViewContact = findViewById(R.id.textViewContact);
+        textCope = findViewById(R.id.textViewCope);
+        textViewNav = findViewById(R.id.textViewNav);
+
         textViewTOC.setOnClickListener(this);
+        textViewAbout.setOnClickListener(this);
+        textViewContact.setOnClickListener(this);
+        textCope.setOnClickListener(this);
+        textViewNav.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         if (view == textViewTOC) {
-            startActivity(new Intent(Information.this, LungCancer.class));
+            startActivity(new Intent(Information.this, cancer_types.class));
             finish();
         }
-    }
+        if(view == textViewAbout){
+            startActivity(new Intent(Information.this, About.class));
+            finish();
+        }
+        if(view == textViewContact){
+            startActivity(new Intent(Information.this, Contact.class));
+            finish();
+        }
+        if(view == textCope){
+            startActivity(new Intent(Information.this, Coping.class));
+            finish();
+        }
+        if(view == textViewNav){
+            startActivity(new Intent(Information.this, Coping.class));
+            finish();
+        }    }
 
 }

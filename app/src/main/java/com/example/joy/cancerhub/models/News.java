@@ -1,11 +1,15 @@
 package com.example.joy.cancerhub.models;
 
+import com.google.firebase.Timestamp;
+
 public class News {
 
-    private String title, shortdesc, medNews,newsLink;
+    private String title, medNews,newsLink;
+    private Timestamp shortdesc;
+
 
     public News(){}
-    public News(String title,String shortdesc,String medNews,String newsLink){
+    public News(String title, Timestamp shortdesc, String medNews, String newsLink){
         this.title =title;
         this.shortdesc = shortdesc;
         this.medNews = medNews;
@@ -14,8 +18,9 @@ public class News {
     public String getTitle(){return title;}
     public void setTitle(String title){this.title =title;}
 
-    public String getShortdesc(){return shortdesc;}
-    public void setShortdesc(String shortdesc){this.shortdesc = shortdesc;}
+    public Timestamp getShortdesc() {
+        return shortdesc;
+    }
 
     public String getMedNews(){return medNews;}
     public void setMedNews(String medNews){this.medNews = medNews;}

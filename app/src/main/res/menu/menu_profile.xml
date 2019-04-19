@@ -3,39 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_Health"
+        android:icon="@drawable/ic_exposure"
+        android:title="My Health" />
+    <item
+        android:id="@+id/nav_Appointment"
+        android:icon="@drawable/ic_date_range"
+        android:title="Appointments" />
 
-        <item
-            android:id="@+id/nav_camera"
-            android:title="Basic Information">
-            <menu>
-                <item
-                    android:id="@+id/nav_Infor"
-                    android:icon="@drawable/ic_edit_black"
-                    android:title="Personal Information" />
-
-                <item
-                    android:id="@+id/nav_Health"
-                    android:icon="@drawable/ic_exposure"
-                    android:title="My Health" />
-                <item
-                    android:id="@+id/nav_manage"
-                    android:icon="@drawable/ic_menu_manage"
-                    android:title="Tools" />
-            </menu>
-        </item>
-    </group>
 
     <item android:title="Communicate">
         <menu>
+
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_manage"
+                android:icon="@drawable/ic_feedback_black"
+                android:title="Feedback" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_help_black"
+                android:title="Help" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_info_black"
+                android:title="About Cancer.Hub" />
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_email_black_24dp"
+                android:title="Contact Us" />
+
+
+        </menu>
+    </item>
+    <item android:title="Accounts">
+        <menu>
+
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_exit_to_app"

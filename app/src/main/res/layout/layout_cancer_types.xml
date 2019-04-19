@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
+    android:id="@+id/rowMainParentLinearLayout"
     android:layout_marginRight="10dp"
     android:layout_marginLeft="10dp"
     android:orientation="vertical">
@@ -19,7 +20,7 @@
         android:padding="15dp"
         android:text="Lung Cancer"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-        android:textColor="#000000"
+        android:textColor="@color/colorPrimary"
         android:textSize="16dp" />
 
     <View
@@ -30,4 +31,4 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:background="@color/colorPrimary" />
-</RelativeLayout>
+</LinearLayout>

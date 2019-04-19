@@ -58,7 +58,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="5dp"
                         android:paddingBottom="10dp"
-                        android:text="Select a symptom from the list below or add a new symptom"
+                        android:text="Select a symptom from the list below: "
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                         android:textSize="12dp" />
 
